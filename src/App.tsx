@@ -23,6 +23,14 @@ function App() {
         <h3>Secret Key (Keep this secret and do not share it with anyone): </h3>
         <p id="keyGenSecretKeyOut">{secretKeyOut}</p>
       </div>
+
+      <div id="encryption">
+        <h2>Encryption</h2>
+        <p>To encrypt a message, you will need the recipient's public key. You can use the public key generated in the previous section or any other valid public key.</p>
+        <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
+        {/*todo: add encryption functionality here*/}
+
+      </div>
      
     </>
   )
