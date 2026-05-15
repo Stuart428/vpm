@@ -81,4 +81,8 @@ type symmetricKeyPackage = {
   authTag: Buffer;
 }
 
-
+async function vgpEncrypt(symmetricPackage: symmetricPackage, publicKey: Uint8Array)
+{
+  const { cipherText, symmetricKeyPackage } = await mlKemPlusAesEncrypt(symmetricPackage, publicKey);
+  return { cipherText, symmetricKeyPackage };
+}
