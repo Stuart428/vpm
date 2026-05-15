@@ -3,21 +3,25 @@ import { createMlKem1024} from "mlkem";
 import './App.css'
 import * as crypto from 'crypto';
 import { Buffer } from 'buffer';
-function App() {
 
+import { useState } from 'react';
+
+function App() {
+  const [publicKeyOut, setPublicKeyOut] = useState<string>('');
+  const [secretKeyOut, setSecretKeyOut] = useState<string>('');
   return (
     <>
       <div id="keyGen">
-        <h2>KeyPair Generation</h2>
+        <h2>Key Pair Generation (Remember to write both of these down! You should probably not spend the time manually writing this on a piece of paper and store it in a text file)</h2>
         <button onClick={async () => {
           const { publicKey, secretKey } = await vgpGenerateKeyPair();
-          console.log("Public Key:", Buffer.from(publicKey).toString('base64'));
-          console.log("Secret Key:", Buffer.from(secretKey).toString('base64'));
-        }}>Generate Key Pair</button>
+          setPublicKeyOut(Buffer.from(publicKey).toString('base64'));
+          setSecretKeyOut(Buffer.from(secretKey).toString('base64'));
+        }}>Generate Key Pair </button>
         <h3>Public Key (Send this to anyone who you want to communicate securely with): </h3>
-        <p id="keyGenPublicKeyOut"></p>
+        <p id="keyGenPublicKeyOut">{publicKeyOut}</p>
         <h3>Secret Key (Keep this secret and do not share it with anyone): </h3>
-        <p id="keyGenSecretKeyOut"></p>
+        <p id="keyGenSecretKeyOut">{secretKeyOut}</p>
       </div>
      
     </>
