@@ -42,19 +42,19 @@ function encryptWithSymmetricKeyBase64 (plainText: string, symmetricKey: Uint8Ar
 
   let enc = cipher.update(plainText, 'utf8', 'base64');
   enc += cipher.final('base64');
-  const symmetricKeyPackage: symmetricKeyPackage = {
+  const symmetricEncryptedDataPackage: symmetricEncryptedDataPackage = {
     cipherText: Buffer.from(symmetricKey),
     initializationVector,
     authTag: Buffer.from(cipher.getAuthTag())
   }
-  return symmetricKeyPackage;
+  return symmetricEncryptedDataPackage;
 }
 
-function decryptWithSymmetricKeyBase64(symmetricKeyPackage: symmetricKeyPackage, symmetricKey: Uint8Array) 
+function decryptWithSymmetricKeyBase64(symmetricEncryptedDataPackage: symmetricEncryptedDataPackage, symmetricKey: Uint8Array) 
 {
-  const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(symmetricKey), Buffer.from(symmetricKeyPackage.initializationVector));
-  decipher.setAuthTag(Buffer.from(symmetricKeyPackage.authTag));
-  let str = decipher.update(symmetricKeyPackage.cipherText, 'base64', 'utf8');
+  const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(symmetricKey), Buffer.from(symmetricEncryptedDataPackage.initializationVector));
+  decipher.setAuthTag(Buffer.from(symmetricEncryptedDataPackage.authTag));
+  let str = decipher.update(symmetricEncryptedDataPackage.cipherText, 'base64', 'utf8');
   str += decipher.final('utf8');
   return str;
 }
@@ -68,21 +68,29 @@ async function vgpGenerateKeyPair()
 async function mlKemPlusAesEncrypt(symetricPackage: symmetricPackage, publicKey: Uint8Array) 
 {
   const { cipherText, sharedSymmetricSecret } = await generateSymKeyAndEncryptMlKem(publicKey);
-  const symmetricKeyPackage = encryptWithSymmetricKeyBase64(symetricPackage.message, sharedSymmetricSecret);
+  const symmetricEncryptedDataPackage = encryptWithSymmetricKeyBase64(symetricPackage.message, sharedSymmetricSecret);
   
-  return { cipherText, symmetricKeyPackage };
+  return { cipherText, symmetricEncryptedDataPackage };
 }
 type symmetricPackage = {
   message: string;
 };
-type symmetricKeyPackage = {
+type symmetricEncryptedDataPackage = {
   cipherText: Uint8Array;
   initializationVector: Buffer;
   authTag: Buffer;
 }
+type encryptedPackage = {
+  encryptedSymmetricKey: Uint8Array;
+  symmetricEncryptedDataPackage: symmetricEncryptedDataPackage;
+}
 
 async function vgpEncrypt(symmetricPackage: symmetricPackage, publicKey: Uint8Array)
 {
-  const { cipherText, symmetricKeyPackage } = await mlKemPlusAesEncrypt(symmetricPackage, publicKey);
-  return { cipherText, symmetricKeyPackage };
+  const { cipherText, symmetricEncryptedDataPackage } = await mlKemPlusAesEncrypt(symmetricPackage, publicKey);
+  const encryptedPackage: encryptedPackage = {
+    encryptedSymmetricKey: cipherText,
+    symmetricEncryptedDataPackage
+  }
+  return encryptedPackage;
 }
