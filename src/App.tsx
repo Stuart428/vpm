@@ -7,7 +7,19 @@ function App() {
 
   return (
     <>
-      
+      <div id="keyGen">
+        <h2>KeyPair Generation</h2>
+        <button onClick={async () => {
+          const { publicKey, secretKey } = await vgpGenerateKeyPair();
+          console.log("Public Key:", Buffer.from(publicKey).toString('base64'));
+          console.log("Secret Key:", Buffer.from(secretKey).toString('base64'));
+        }}>Generate Key Pair</button>
+        <h3>Public Key (Send this to anyone who you want to communicate securely with): </h3>
+        <p id="keyGenPublicKeyOut"></p>
+        <h3>Secret Key (Keep this secret and do not share it with anyone): </h3>
+        <p id="keyGenSecretKeyOut"></p>
+      </div>
+     
     </>
   )
 }
