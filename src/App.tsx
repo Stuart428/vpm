@@ -1,8 +1,8 @@
 
 import { createMlKem1024} from "mlkem";
 import './App.css'
-import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-
+import * as crypto from 'crypto';
+import { Buffer } from 'buffer';
 function App() {
 
   return (
@@ -32,4 +32,22 @@ async function decryptMlKem(cipherText: Uint8Array, secretKey: Uint8Array)
   const sharedSymmetricSecret = receiver.decap(cipherText, secretKey);
   return sharedSymmetricSecret;
 }
+function encryptWithSymmetricKeyBase64 (plainText: string, symmetricKey: Uint8Array) 
+{
+  const initializationVector = Buffer.from(crypto.randomBytes(12), 'utf8');
+  const cipher = crypto.createCipheriv('aes-256-gcm', symmetricKey, initializationVector);
+
+  let enc = cipher.update(plainText, 'utf8', 'base64');
+  enc += cipher.final('base64');
+  return [enc, initializationVector, cipher.getAuthTag()];
+}
+function decryptWithSymmetricKeyBase64(enc:string, initializationVector: Buffer, authTag: Buffer, symmetricKey: Uint8Array) 
+{
+  const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(symmetricKey), Buffer.from(initializationVector));
+  decipher.setAuthTag(Buffer.from(authTag));
+  let str = decipher.update(enc, 'base64', 'utf8');
+  str += decipher.final('utf8');
+  return str;
+}
+
 
