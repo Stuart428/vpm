@@ -71,7 +71,6 @@ async function mlKemPlusAesEncrypt(symetricPackage: symmetricPackage, publicKey:
   const symmetricKeyPackage = encryptWithSymmetricKeyBase64(symetricPackage.message, sharedSymmetricSecret);
   
   return { cipherText, symmetricKeyPackage };
-  // The cipherText is the encapsulated symmetric key, and enc is the AES-GCM encrypted message. 
 }
 type symmetricPackage = {
   message: string;
