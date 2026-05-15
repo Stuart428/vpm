@@ -42,14 +42,19 @@ function encryptWithSymmetricKeyBase64 (plainText: string, symmetricKey: Uint8Ar
 
   let enc = cipher.update(plainText, 'utf8', 'base64');
   enc += cipher.final('base64');
-  return [enc, initializationVector, cipher.getAuthTag()];
+  const symmetricKeyPackage: symmetricKeyPackage = {
+    cipherText: Buffer.from(symmetricKey),
+    initializationVector,
+    authTag: Buffer.from(cipher.getAuthTag())
+  }
+  return symmetricKeyPackage;
 }
 
-function decryptWithSymmetricKeyBase64(enc:string, initializationVector: Buffer, authTag: Buffer, symmetricKey: Uint8Array) 
+function decryptWithSymmetricKeyBase64(symmetricKeyPackage: symmetricKeyPackage, symmetricKey: Uint8Array) 
 {
-  const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(symmetricKey), Buffer.from(initializationVector));
-  decipher.setAuthTag(Buffer.from(authTag));
-  let str = decipher.update(enc, 'base64', 'utf8');
+  const decipher = crypto.createDecipheriv('aes-256-gcm', Buffer.from(symmetricKey), Buffer.from(symmetricKeyPackage.initializationVector));
+  decipher.setAuthTag(Buffer.from(symmetricKeyPackage.authTag));
+  let str = decipher.update(symmetricKeyPackage.cipherText, 'base64', 'utf8');
   str += decipher.final('utf8');
   return str;
 }
@@ -60,12 +65,21 @@ async function vgpGenerateKeyPair()
   return { publicKey, secretKey };
 }
 
-async function mlKemPlusAesEncrypt(symetricPackage: string, publicKey: Uint8Array) 
+async function mlKemPlusAesEncrypt(symetricPackage: symmetricPackage, publicKey: Uint8Array) 
 {
   const { cipherText, sharedSymmetricSecret } = await generateSymKeyAndEncryptMlKem(publicKey);
-  const [enc, initializationVector, authTag] = encryptWithSymmetricKeyBase64(symetricPackage, sharedSymmetricSecret);
-  return { cipherText, enc, initializationVector, authTag };
+  const symmetricKeyPackage = encryptWithSymmetricKeyBase64(symetricPackage.message, sharedSymmetricSecret);
+  
+  return { cipherText, symmetricKeyPackage };
   // The cipherText is the encapsulated symmetric key, and enc is the AES-GCM encrypted message. 
+}
+type symmetricPackage = {
+  message: string;
+};
+type symmetricKeyPackage = {
+  cipherText: Uint8Array;
+  initializationVector: Buffer;
+  authTag: Buffer;
 }
 
 
