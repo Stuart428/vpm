@@ -94,3 +94,16 @@ async function vgpEncrypt(symmetricPackage: symmetricPackage, publicKey: Uint8Ar
   }
   return encryptedPackage;
 }
+
+type decryptedPackage = {
+  message: string;
+}
+async function vgpDecrypt(encryptedPackage: encryptedPackage, secretKey: Uint8Array)
+{
+  const sharedSymmetricSecret = await decryptMlKem(encryptedPackage.encryptedSymmetricKey, secretKey);
+  const decryptedMessage = decryptWithSymmetricKeyBase64(encryptedPackage.symmetricEncryptedDataPackage, sharedSymmetricSecret);
+  const decryptedPackage: decryptedPackage = {
+    message: decryptedMessage
+  }
+  return decryptedPackage;
+}
