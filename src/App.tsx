@@ -49,5 +49,15 @@ function decryptWithSymmetricKeyBase64(enc:string, initializationVector: Buffer,
   str += decipher.final('utf8');
   return str;
 }
+async function vgpGenerateKeyPair() {
+  const { publicKey, secretKey } = await generateMlKemKeyPair();
+  return { publicKey, secretKey };
+}
+async function mlKemPlusAesEncrypt(symetricPackage: string, publicKey: Uint8Array) {
+  const { cipherText, sharedSymmetricSecret } = await generateSymKeyAndEncryptMlKem(publicKey);
+  const [enc, initializationVector, authTag] = encryptWithSymmetricKeyBase64(symetricPackage, sharedSymmetricSecret);
+  return { cipherText, enc, initializationVector, authTag };
+  // The cipherText is the encapsulated symmetric key, and enc is the AES-GCM encrypted message. 
+}
 
 
