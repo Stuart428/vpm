@@ -20,8 +20,12 @@ function App() {
         }}>Generate Key Pair </button>
         <h3>Public Key (Send this to anyone who you want to communicate securely with): </h3>
         <p id="keyGenPublicKeyOut">{publicKeyOut}</p>
+        <button
+onClick={() => {navigator.clipboard.writeText(publicKeyOut)}}> Copy</button>
         <h3>Secret Key (Keep this secret and do not share it with anyone): </h3>
         <p id="keyGenSecretKeyOut">{secretKeyOut}</p>
+        <button
+onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
       </div>
 
       <div id="encryption">
