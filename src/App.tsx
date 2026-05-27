@@ -9,8 +9,9 @@ import { useState, useRef} from 'react';
 function App() {
   const [publicKeyOut, setPublicKeyOut] = useState<string>('');
   const [secretKeyOut, setSecretKeyOut] = useState<string>('');
-  const encKeyRef = useRef();
-  const encMessageRef = useRef();
+  let encKeyIn;
+  let encMessageIn;
+
   return (
     <>
       <div id="keyGen">
@@ -36,8 +37,9 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
         {/*todo: add encryption functionality here ref={inputRef}*/}
         <form>
-        <input type="password" ref={encKeyRef}>Enter Key Here</input>
-        <input type="text" ref={encMessageRef}></input>
+        <input type="password" onChange={}>Enter Key Here</input>
+        <input type="text" ref={encMessageRef}>Enter message here</input>
+        <input type="submit">Encrypt</input>
         </form>
 
       </div>
