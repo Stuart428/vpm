@@ -4,11 +4,13 @@ import './App.css'
 import * as crypto from 'crypto';
 import { Buffer } from 'buffer';
 
-import { useState } from 'react';
+import { useState, useRef} from 'react';
 
 function App() {
   const [publicKeyOut, setPublicKeyOut] = useState<string>('');
   const [secretKeyOut, setSecretKeyOut] = useState<string>('');
+  const encKeyRef = useRef();
+  const encMessageRef = useRef();
   return (
     <>
       <div id="keyGen">
@@ -32,7 +34,11 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <h2>Encryption</h2>
         <p>To encrypt a message, you will need the recipient's public key. You can use the public key generated in the previous section or any other valid public key.</p>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
-        {/*todo: add encryption functionality here*/}
+        {/*todo: add encryption functionality here ref={inputRef}*/}
+        <form>
+        <input type="password" ref={encKeyRef}>Enter Key Here</input>
+        <input type="text" ref={encMessageRef}></input>
+        </form>
 
       </div>
      
