@@ -88,13 +88,13 @@ async function decryptMlKem(cipherText: Uint8Array, secretKey: Uint8Array)
 
 function encryptWithSymmetricKeyBase64 (plainText: string, symmetricKey: Uint8Array) 
 {
-  const initializationVector = Buffer.from(crypto.randomBytes(12), 'utf8');
+  const initializationVector = crypto.randomBytes(12);
   const cipher = crypto.createCipheriv('aes-256-gcm', symmetricKey, initializationVector);
 
   let enc = cipher.update(plainText, 'utf8', 'base64');
   enc += cipher.final('base64');
   const symmetricEncryptedDataPackage: symmetricEncryptedDataPackage = {
-    cipherText: Buffer.from(symmetricKey),
+    cipherText: enc,
     initializationVector,
     authTag: Buffer.from(cipher.getAuthTag())
   }
