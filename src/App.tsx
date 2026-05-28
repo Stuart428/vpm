@@ -46,10 +46,16 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
           const message = messageIn;
           const symetricPackage : symmetricPackage = {message: message};
           const encryptedPackage : encryptedPackage = await vgpEncrypt(symetricPackage, publicKey);
-          
+          const base64 = Buffer.from(JSON.stringify(encryptedPackage)).toString("base64");
+          setEncryptedPackageOut(base64);
+
 
           }}>Encrypt</input>
         </form>
+        <h3>The encrypted message: </h3>
+        <p>{encryptedPackageOut}</p>
+        <button
+onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}}> Copy</button>
 
       </div>
      
