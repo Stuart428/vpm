@@ -11,6 +11,7 @@ function App() {
   const [secretKeyOut, setSecretKeyOut] = useState<string>('');
   const [publicKeyIn, setPublicKeyIn] = useState<string>('');
   const [messageIn, setMessageIn] = useState<string>('');
+  const [encryptedPackageOut, setEncryptedPackageOut] = useState<string>('');
   
 
   return (
@@ -38,9 +39,16 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
         {/*todo: add encryption functionality here ref={inputRef}*/}
         <form>
-        <input type="password" onChange={}>Enter Key Here</input>
-        <input type="text" onChange={}>Enter message here</input>
-        <input type="submit">Encrypt</input>
+        <input type="password" value={publicKeyIn} onChange={(event) => setPublicKeyIn(event.target.value)}>Enter Key Here</input>
+        <input type="text" value={messageIn} onChange={(event) => setMessageIn(event.target.value)}>Enter message here</input>
+        <input type="submit" onClick={async () => {
+          const publicKey = Buffer.from(publicKeyIn, 'base64');
+          const message = messageIn;
+          const symetricPackage : symmetricPackage = {message: message};
+          const encryptedPackage : encryptedPackage = await vgpEncrypt(symetricPackage, publicKey);
+          
+
+          }}>Encrypt</input>
         </form>
 
       </div>
