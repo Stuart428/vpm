@@ -93,6 +93,7 @@ function encryptWithSymmetricKeyBase64 (plainText: string, symmetricKey: Uint8Ar
 
   let enc = cipher.update(plainText, 'utf8', 'base64');
   enc += cipher.final('base64');
+  
   const symmetricEncryptedDataPackage: symmetricEncryptedDataPackage = {
     cipherText: enc,
     initializationVector,
@@ -127,7 +128,7 @@ type symmetricPackage = {
   message: string;
 };
 type symmetricEncryptedDataPackage = {
-  cipherText: Uint8Array;
+  cipherText: string;
   initializationVector: Buffer;
   authTag: Buffer;
 }
