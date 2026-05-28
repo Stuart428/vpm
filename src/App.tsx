@@ -4,7 +4,7 @@ import './App.css'
 import * as crypto from 'crypto';
 import { Buffer } from 'buffer';
 
-import { useState, useRef} from 'react';
+import { useState} from 'react';
 
 function App() {
   const [publicKeyOut, setPublicKeyOut] = useState<string>('');
