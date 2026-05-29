@@ -12,6 +12,8 @@ function App() {
   const [publicKeyIn, setPublicKeyIn] = useState<string>('');
   const [messageIn, setMessageIn] = useState<string>('');
   const [encryptedPackageOut, setEncryptedPackageOut] = useState<string>('');
+  const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
+  const [secretKeyIn, setSecretKeyIn] = useState<string>('');
   
 
   return (
@@ -73,6 +75,42 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <button
 onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}}> Copy</button>
 
+      </div>
+      <div id="decryption">
+        <h2>Decryption</h2>
+        <p>To decrypt a message, you will need the encrypted package (the output from the encryption section) and the secret key corresponding to the public key used for encryption.</p>
+        <p>Enter the encrypted package (in base64 format) and your secret key (in base64 format) below:</p>
+        <form onSubmit={async (e) => {
+          e.preventDefault();
+          const secretKey = new Uint8Array(
+            Buffer.from(secretKeyIn, 'base64')
+          );
+          console.log("secretKey length:", secretKey.length);
+          console.log(secretKey);
+          console.log("secretKey length:", secretKeyIn.length);
+  console.log(secretKeyIn);
+          const encryptedPackageJson = Buffer.from(encryptedPackageIn, 'base64').toString('utf-8');
+          const encryptedPackage : encryptedPackage = JSON.parse(encryptedPackageJson);
+          const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
+          alert("Decrypted message: " + decryptedPackage.message);
+
+
+          }}>
+        <textarea
+  value={encryptedPackageIn}
+  onChange={(event) => setEncryptedPackageIn(event.target.value)}
+  placeholder="Enter encrypted package here"
+  rows={10}
+  cols={100}
+/>       
+<textarea
+  value={secretKeyIn}
+  onChange={(event) => setSecretKeyIn(event.target.value)}
+  placeholder="Enter secret key here"
+  rows={10}
+  cols={100}
+/>  
+        </form>
       </div>
      
     </>
