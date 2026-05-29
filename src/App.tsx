@@ -54,7 +54,16 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
           const message = messageIn;
           const symetricPackage : symmetricPackage = {message: message};
           const encryptedPackage : encryptedPackage = await vgpEncrypt(symetricPackage, publicKey);
-          const base64 = Buffer.from(JSON.stringify(encryptedPackage)).toString("base64");
+          const safePackage = {
+  encryptedSymmetricKey: Buffer.from(encryptedPackage.encryptedSymmetricKey).toString("base64"),
+  symmetricEncryptedDataPackage: {
+    cipherText: encryptedPackage.symmetricEncryptedDataPackage.cipherText,
+    initializationVector: Buffer.from(encryptedPackage.symmetricEncryptedDataPackage.initializationVector).toString("base64"),
+    authTag: Buffer.from(encryptedPackage.symmetricEncryptedDataPackage.authTag).toString("base64"),
+  }
+};
+
+const base64 = Buffer.from(JSON.stringify(safePackage)).toString("base64");
           setEncryptedPackageOut(base64);
           console.log(base64);
 
@@ -90,7 +99,16 @@ onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}}> Copy</butt
           console.log("secretKey length:", secretKeyIn.length);
   console.log(secretKeyIn);
           const encryptedPackageJson = Buffer.from(encryptedPackageIn, 'base64').toString('utf-8');
-          const encryptedPackage : encryptedPackage = JSON.parse(encryptedPackageJson);
+          const parsed = JSON.parse(encryptedPackageJson);
+
+          const encryptedPackage: encryptedPackage = {
+            encryptedSymmetricKey: new Uint8Array(Buffer.from(parsed.encryptedSymmetricKey, "base64")),
+            symmetricEncryptedDataPackage: {
+            cipherText: parsed.symmetricEncryptedDataPackage.cipherText,
+            initializationVector: Buffer.from(parsed.symmetricEncryptedDataPackage.initializationVector, "base64"),
+           authTag: Buffer.from(parsed.symmetricEncryptedDataPackage.authTag, "base64"),
+         }
+        };
           const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
           alert("Decrypted message: " + decryptedPackage.message);
 
