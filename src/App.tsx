@@ -20,6 +20,8 @@ function App() {
         <h2>Key Pair Generation (Remember to write both of these down! You should probably not spend the time manually writing this on a piece of paper and store it in a text file)</h2>
         <button onClick={async () => {
           const { publicKey, secretKey } = await vgpGenerateKeyPair();
+          console.log(publicKey.length);
+          console.log(Buffer.from(publicKey).toString('base64').length);
           setPublicKeyOut(Buffer.from(publicKey).toString('base64'));
           setSecretKeyOut(Buffer.from(secretKey).toString('base64'));
         }}>Generate Key Pair </button>
@@ -39,17 +41,30 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
         {/*todo: add encryption functionality here ref={inputRef}*/}
         <form onSubmit={async (e) => {
-          //e.preventDefault();
-          const publicKey = Buffer.from(publicKeyIn, 'base64');
+          e.preventDefault();
+          const publicKey = new Uint8Array(
+            Buffer.from(publicKeyIn, 'base64')
+          );
+          console.log("publicKey length:", publicKey.length);
+          console.log(publicKey);
+          console.log("publicKey length:", publicKeyIn.length);
+  console.log(publicKeyIn);
           const message = messageIn;
           const symetricPackage : symmetricPackage = {message: message};
           const encryptedPackage : encryptedPackage = await vgpEncrypt(symetricPackage, publicKey);
           const base64 = Buffer.from(JSON.stringify(encryptedPackage)).toString("base64");
           setEncryptedPackageOut(base64);
+          console.log(base64);
 
 
           }}>
-        <input type="password" value={publicKeyIn} onChange={(event) => setPublicKeyIn(event.target.value)} placeholder="Enter public key here"></input>
+        <textarea
+  value={publicKeyIn}
+  onChange={(event) => setPublicKeyIn(event.target.value)}
+  placeholder="Enter public key here"
+  rows={10}
+  cols={100}
+/>
         <input type="text" value={messageIn} onChange={(event) => setMessageIn(event.target.value)} placeholder="Enter message here"></input>
         <input type="submit" ></input>
         </form>
@@ -70,12 +85,16 @@ async function generateMlKemKeyPair()
 {
   const keypair = await createMlKem1024();
   const [publicKey, secretKey] = keypair.generateKeyPair();
+  console.log(publicKey.length);
   return { publicKey, secretKey };
 }
+
 
 async function generateSymKeyAndEncryptMlKem(publicKey: Uint8Array)
 {
   const sender = await createMlKem1024();
+  console.log("publicKey length:", publicKey.length);
+  console.log(publicKey);
   const [cipherText, sharedSymmetricSecret] = sender.encap(publicKey);
   return { cipherText, sharedSymmetricSecret };
 }
