@@ -110,6 +110,7 @@ onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}}> Copy</butt
   rows={10}
   cols={100}
 />  
+<input type="submit" ></input>
         </form>
       </div>
      
