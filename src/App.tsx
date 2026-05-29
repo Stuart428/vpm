@@ -38,10 +38,8 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <p>To encrypt a message, you will need the recipient's public key. You can use the public key generated in the previous section or any other valid public key.</p>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
         {/*todo: add encryption functionality here ref={inputRef}*/}
-        <form>
-        <input type="password" value={publicKeyIn} onChange={(event) => setPublicKeyIn(event.target.value)} placeholder="Enter public key here"></input>
-        <input type="text" value={messageIn} onChange={(event) => setMessageIn(event.target.value)} placeholder="Enter message here"></input>
-        <input type="submit" onClick={async () => {
+        <form onSubmit={async (e) => {
+          e.preventDefault();
           const publicKey = Buffer.from(publicKeyIn, 'base64');
           const message = messageIn;
           const symetricPackage : symmetricPackage = {message: message};
@@ -50,7 +48,10 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
           setEncryptedPackageOut(base64);
 
 
-          }}></input>
+          }}>
+        <input type="password" value={publicKeyIn} onChange={(event) => setPublicKeyIn(event.target.value)} placeholder="Enter public key here"></input>
+        <input type="text" value={messageIn} onChange={(event) => setMessageIn(event.target.value)} placeholder="Enter message here"></input>
+        <input type="submit" ></input>
         </form>
         <h3>The encrypted message: </h3>
         <p>{encryptedPackageOut}</p>
