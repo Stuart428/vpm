@@ -39,7 +39,7 @@ onClick={() => {navigator.clipboard.writeText(secretKeyOut)}}> Copy</button>
         <p>Enter the message you want to encrypt and the recipient's public key (in base64 format) below:</p>
         {/*todo: add encryption functionality here ref={inputRef}*/}
         <form onSubmit={async (e) => {
-          e.preventDefault();
+          //e.preventDefault();
           const publicKey = Buffer.from(publicKeyIn, 'base64');
           const message = messageIn;
           const symetricPackage : symmetricPackage = {message: message};
