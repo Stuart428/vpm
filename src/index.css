@@ -1,4 +1,29 @@
 :root {
   font-family: Arial, sans-serif;
+  /* Disable iOS text auto-scaling */
+  -webkit-text-size-adjust: 100%;
+
+  /* Remove tap highlight */
+  -webkit-tap-highlight-color: transparent;
+
+  /* Use your own font everywhere */
+  font-family: sans-serif;
+
+  /* Optional color scheme */
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  /* Remove Safari form control styling */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Inherit fonts/colors */
+  font: inherit;
+  color: inherit;
 }
 
