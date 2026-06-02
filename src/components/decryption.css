@@ -5,3 +5,8 @@
     padding: 5px;
     margin: 20px;
 }
+
+#decryption input
+{
+    display: block;
+}
