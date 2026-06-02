@@ -1,3 +1,4 @@
+import './encryption.css'
 import { useState} from 'react';
 import { vgpEncrypt } from '../cryptoFunctions';
 import { Buffer } from 'buffer';

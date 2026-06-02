@@ -1,4 +1,5 @@
 
+import './decryption.css'
 import { useState} from 'react';
 import { Buffer } from 'buffer';
 import { vgpDecrypt } from '../cryptoFunctions';

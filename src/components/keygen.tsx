@@ -1,4 +1,5 @@
 import { useState} from 'react';
+import './keygen.css'
 import { vgpGenerateKeyPair } from '../cryptoFunctions';
 import { Buffer } from 'buffer';
 async function onClick(setPublicKeyOut: React.Dispatch<React.SetStateAction<string>>, setSecretKeyOut: React.Dispatch<React.SetStateAction<string>>)
