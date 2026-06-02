@@ -1,10 +1,10 @@
 
 import './decryption.css'
-import { useState} from 'react';
+import React, { useState} from 'react';
 import { Buffer } from 'buffer';
 import { vgpDecrypt } from '../cryptoFunctions';
 
-async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string)
+async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>)
 {
     e.preventDefault();
     const secretKey = new Uint8Array(
@@ -27,6 +27,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
     };
 
     const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
+    setMessageOut(decryptedPackage.message);
     alert("Decrypted message: " + decryptedPackage.message);
 
 }
@@ -34,13 +35,14 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
 function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
     const [secretKeyIn, setSecretKeyIn] = useState<string>('');
+    const [messageOut, setMessageOut] = useState<string>('');
 
     return (
         <div id="decryption">
             <h2>Decryption</h2>
             <p>To decrypt a message, you will need the encrypted package (the output from the encryption section) and the secret key corresponding to the public key used for encryption.</p>
             <p>Enter the encrypted package (in base64 format) and your secret key (in base64 format) below:</p>
-            <form onSubmit={async (e) => {await onSubmit(e, encryptedPackageIn, secretKeyIn);}}>
+            <form onSubmit={async (e) => {await onSubmit(e, encryptedPackageIn, secretKeyIn, setMessageOut);}}>
                 <textarea
                     value={encryptedPackageIn}
                     onChange={(event) => setEncryptedPackageIn(event.target.value)}
@@ -57,6 +59,8 @@ function decryption() {
                 />  
                 <input type="submit" ></input>
         </form>
+        <h3>Decrypted message:</h3>
+        <p>{messageOut}</p>
     </div>
      
     )
