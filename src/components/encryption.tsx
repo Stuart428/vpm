@@ -47,7 +47,13 @@ function Encryption() {
             rows={10}
             cols={100}
         />
-        <input type="text" value={messageIn} onChange={(event) => setMessageIn(event.target.value)} placeholder="Enter message here"></input>
+        <textarea 
+        value={messageIn} 
+        onChange={(event) => setMessageIn(event.target.value)} 
+        placeholder="Enter message here"
+        rows={10}
+        cols={100}
+        />
         
         <input type="submit" ></input>
         
