@@ -8,7 +8,8 @@
 
 #keyGen button 
 {
-    padding: 5px;
+    margin: 5px;
+    padding: 2px;
     display: block;
     border: 2px solid black;
     background-color: white;  
