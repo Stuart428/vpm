@@ -32,19 +32,25 @@ input
 {
     display: block;
     margin: 5px;
-    padding: 3px;
+    padding: 5px;
     display: block;
     border: 1px solid black;
     background-color: white;  
-    border-radius: 6px;
+    border-radius: 8px;
 }
 button
 {
     display: block;
     margin: 5px;
-    padding: 3px;
+    padding: 5px;
     display: block;
     border: 1px solid black;
     background-color: white;  
-    border-radius: 6px;
+    border-radius: 8px;
+    color: black;
+}
+button:hover
+{
+  color: white;
+  background-color: black;
 }
