@@ -61,6 +61,7 @@ function decryption() {
         </form>
         <h3>Decrypted message:</h3>
         <p>{messageOut}</p>
+        <button onClick={() => {navigator.clipboard.writeText(messageOut)}}> Copy</button>
     </div>
      
     )
