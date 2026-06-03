@@ -28,3 +28,23 @@
 }
 
 
+input
+{
+    display: block;
+    margin: 5px;
+    padding: 3px;
+    display: block;
+    border: 1px solid black;
+    background-color: white;  
+    border-radius: 6px;
+}
+button
+{
+    display: block;
+    margin: 5px;
+    padding: 3px;
+    display: block;
+    border: 1px solid black;
+    background-color: white;  
+    border-radius: 6px;
+}

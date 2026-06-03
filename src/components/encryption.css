@@ -5,23 +5,3 @@
     padding: 5px;
     margin: 20px;
 }
-#encryption input
-{
-    display: block;
-    margin: 5px;
-    padding: 2px;
-    display: block;
-    border: 2px solid black;
-    background-color: white;  
-    border-radius: 6px;
-}
-
-#encryption button 
-{
-    margin: 5px;
-    padding: 2px;
-    display: block;
-    border: 2px solid black;
-    background-color: white;  
-    border-radius: 6px;
-}

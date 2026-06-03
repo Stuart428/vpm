@@ -6,22 +6,3 @@
     margin: 20px;
 }
 
-#decryption input
-{
-    display: block;
-    margin: 5px;
-    padding: 2px;
-    display: block;
-    border: 2px solid black;
-    background-color: white;  
-    border-radius: 6px;
-}
-#decryption button 
-{
-    margin: 5px;
-    padding: 2px;
-    display: block;
-    border: 2px solid black;
-    background-color: white;  
-    border-radius: 6px;
-}
