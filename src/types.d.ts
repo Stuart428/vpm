@@ -15,3 +15,9 @@ type encryptedPackage = {
 type decryptedPackage = {
   message: string;
 }
+
+type filePackage = 
+{
+  fileName: string;
+  data: string;
+}
