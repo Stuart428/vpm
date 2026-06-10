@@ -49,7 +49,8 @@ export function decryptWithSymmetricKeyBase64(symmetricEncryptedDataPackage: sym
   decipher.setAuthTag(Buffer.from(symmetricEncryptedDataPackage.authTag));
   let str = decipher.update(symmetricEncryptedDataPackage.cipherText, 'base64', 'utf8');
   str += decipher.final('utf8');
-  return str;
+  const decryptedPackage : decryptedPackage = JSON.parse(str)
+  return decryptedPackage
 }
 
 export async function vgpGenerateKeyPair() 
@@ -81,9 +82,6 @@ export async function vgpEncrypt(symmetricPackage: symmetricPackage, publicKey: 
 export async function vgpDecrypt(encryptedPackage: encryptedPackage, secretKey: Uint8Array)
 {
   const sharedSymmetricSecret = await decryptMlKem(encryptedPackage.encryptedSymmetricKey, secretKey);
-  const decryptedMessage = decryptWithSymmetricKeyBase64(encryptedPackage.symmetricEncryptedDataPackage, sharedSymmetricSecret);
-  const decryptedPackage: decryptedPackage = {
-    message: decryptedMessage
-  }
+  const decryptedPackage: decryptedPackage = decryptWithSymmetricKeyBase64(encryptedPackage.symmetricEncryptedDataPackage, sharedSymmetricSecret);
   return decryptedPackage;
 }

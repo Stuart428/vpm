@@ -1,6 +1,7 @@
 
 type symmetricPackage = {
   message: string;
+  filePackage: filePackage[]
 };
 type symmetricEncryptedDataPackage = {
   cipherText: string;
@@ -14,6 +15,7 @@ type encryptedPackage = {
 
 type decryptedPackage = {
   message: string;
+  filePackage: filePackage[]
 }
 
 type filePackage = 
