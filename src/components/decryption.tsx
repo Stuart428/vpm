@@ -3,7 +3,7 @@ import './decryption.css'
 import React, { useState} from 'react';
 import { Buffer } from 'buffer';
 import { vgpDecrypt } from '../cryptoFunctions';
-
+//todo: make ze file download
 async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>)
 {
     e.preventDefault();
