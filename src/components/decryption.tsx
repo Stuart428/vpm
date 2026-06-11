@@ -111,7 +111,7 @@ function decryption() {
         <h3>Decrypted message:</h3>
         <p>{messageOut}</p>
         <button onClick={() => {navigator.clipboard.writeText(messageOut)}}> Copy</button>
-        <button id="downloadButton" value="download" onClick={async () => {await downloadFile(decryptedPackage)}}>Download File (If applicable)</button>
+        <button disabled={!decryptedPackage} id="downloadButton" value="download" onClick={async () => {await downloadFile(decryptedPackage)}}>Download File</button>
     </div>
      
     )
