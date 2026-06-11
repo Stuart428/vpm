@@ -14,7 +14,7 @@ async function onSumbit(e: React.FormEvent<HTMLFormElement>, publicKeyIn: string
     console.log(publicKeyIn);
     const message = messageIn;
     const symetricPackage : symmetricPackage = {message: message, filePackage: files };
-    alert(files);
+    alert(JSON.stringify(files));
     const encryptedPackage : encryptedPackage = await vgpEncrypt(symetricPackage, publicKey);
     const safePackage = {
         encryptedSymmetricKey: Buffer.from(encryptedPackage.encryptedSymmetricKey).toString("base64"),
