@@ -43,7 +43,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
       throw error;
     }
 }
-async function downloadFile(decryptedPackage) {
+async function downloadFile(decryptedPackage: decryptedPackage) {
     try {
         console.log("decryptedPackage", decryptedPackage);
 
@@ -111,7 +111,7 @@ function decryption() {
         <h3>Decrypted message:</h3>
         <p>{messageOut}</p>
         <button onClick={() => {navigator.clipboard.writeText(messageOut)}}> Copy</button>
-        <button disabled={!decryptedPackage} id="downloadButton" value="download" onClick={async () => {await downloadFile(decryptedPackage)}}>Download File</button>
+        <button disabled={!decryptedPackage} id="downloadButton" value="download" onClick={async () => {if (decryptedPackage){ await downloadFile(decryptedPackage)}}}>Download File</button>
     </div>
      
     )
