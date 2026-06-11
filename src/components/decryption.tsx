@@ -55,7 +55,7 @@ async function downloadFile(decryptedPackage:decryptedPackage)
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
     
-
+    return;
 }
 function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
