@@ -42,26 +42,41 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
       throw error;
     }
 }
-async function downloadFile(decryptedPackage:decryptedPackage)
-{
+async function downloadFile(decryptedPackage: decryptedPackage) {
     try {
-    const files = decryptedPackage.filePackage;
-    const fileThing: filePackage = files[0];
-    const data = fileThing.data;
-    const base64 = await fetch(data);
-    const File = await base64.blob();
-    const element = document.createElement("a");
-    element.href = URL.createObjectURL(File);
-    element.download = fileThing.fileName;
-    document.body.appendChild(element); // Required for this to work in FireFox
-    element.click();
-    }
-    catch  (error) 
-    {
+        console.log("decryptedPackage", decryptedPackage);
+
+        if (!decryptedPackage) {
+            throw new Error("decryptedPackage is undefined");
+        }
+
+        if (!decryptedPackage.filePackage?.length) {
+            throw new Error("filePackage is empty or undefined");
+        }
+
+        const fileThing = decryptedPackage.filePackage[0];
+
+        console.log("fileThing", fileThing);
+
+        if (!fileThing.data) {
+            throw new Error("fileThing.data is undefined");
+        }
+
+        const response = await fetch(fileThing.data);
+        const blob = await response.blob();
+
+        const element = document.createElement("a");
+        element.href = URL.createObjectURL(blob);
+        element.download = fileThing.fileName ?? "download";
+
+        document.body.appendChild(element);
+        element.click();
+        element.remove();
+
+    } catch (error) {
+        console.error(error);
         alert(error);
     }
-    
-    
 }
 function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
