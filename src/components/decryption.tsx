@@ -4,7 +4,7 @@ import React, { useState} from 'react';
 import { Buffer } from 'buffer';
 import { vgpDecrypt } from '../cryptoFunctions';
 //todo: make ze file download
-async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>): Promise<decryptedPackage>
+async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>, setDecryptedPackage: React.Dispatch<React.SetStateAction<decryptedPackage | null>>): Promise<decryptedPackage>
 {
     try 
     {
@@ -33,6 +33,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
         setMessageOut(decryptedPackage.message);
         //setMessageOut(JSON.stringify(decryptedPackage));
         alert("Decrypted message: " + decryptedPackage.message);
+        setDecryptedPackage(decryptedPackage);
         return decryptedPackage;
     }
     catch (error)
@@ -82,14 +83,15 @@ function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
     const [secretKeyIn, setSecretKeyIn] = useState<string>('');
     const [messageOut, setMessageOut] = useState<string>('');
-    let decryptedPackage: decryptedPackage;
+    const [decryptedPackage, setDecryptedPackage] =
+    useState<decryptedPackage | null>(null);
 
     return (
         <div id="decryption">
             <h2>Decryption</h2>
             <p>To decrypt a message, you will need the encrypted package (the output from the encryption section) and the secret key corresponding to the public key used for encryption.</p>
             <p>Enter the encrypted package (in base64 format) and your secret key (in base64 format) below:</p>
-            <form onSubmit={async (e) => {decryptedPackage = await onSubmit(e, encryptedPackageIn, secretKeyIn, setMessageOut);}}>
+            <form onSubmit={async (e) => {await onSubmit(e, encryptedPackageIn, secretKeyIn, setMessageOut, setDecryptedPackage);}}>
                 <textarea
                     value={encryptedPackageIn}
                     onChange={(event) => setEncryptedPackageIn(event.target.value)}
