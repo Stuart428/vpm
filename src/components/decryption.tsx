@@ -44,6 +44,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
 }
 async function downloadFile(decryptedPackage:decryptedPackage)
 {
+    try {
     const files = decryptedPackage.filePackage;
     const fileThing: filePackage = files[0];
     const data = fileThing.data;
@@ -54,8 +55,13 @@ async function downloadFile(decryptedPackage:decryptedPackage)
     element.download = fileThing.fileName;
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
+    }
+    catch  (error) 
+    {
+        alert(error);
+    }
     
-    return;
+    
 }
 function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
