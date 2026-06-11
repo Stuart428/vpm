@@ -31,6 +31,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
         const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
         alert(JSON.stringify(decryptedPackage));
         setMessageOut(decryptedPackage.message);
+        setMessageOut(JSON.stringify(decryptedPackage));
         alert("Decrypted message: " + decryptedPackage.message);
     }
     catch (error)
