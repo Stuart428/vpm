@@ -34,7 +34,8 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
     }
     catch (error)
     {
-      alert(error)  
+      alert(error);
+      alert(encryptedPackageIn);
     }
 }
 
