@@ -43,7 +43,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
       throw error;
     }
 }
-async function downloadFile(decryptedPackage: decryptedPackage) {
+async function downloadFile(decryptedPackage) {
     try {
         console.log("decryptedPackage", decryptedPackage);
 
