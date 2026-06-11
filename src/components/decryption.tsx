@@ -6,30 +6,36 @@ import { vgpDecrypt } from '../cryptoFunctions';
 //todo: make ze file download
 async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>)
 {
-    e.preventDefault();
-    const secretKey = new Uint8Array(
-        Buffer.from(secretKeyIn, 'base64')
-    );
-    console.log("secretKey length:", secretKey.length);
-    console.log(secretKey);
-    console.log("secretKey length:", secretKeyIn.length);
-    console.log(secretKeyIn);
-    const encryptedPackageJson = Buffer.from(encryptedPackageIn, 'base64').toString('utf-8');
-    const parsed = JSON.parse(encryptedPackageJson);
+    try 
+    {
+        e.preventDefault();
+        const secretKey = new Uint8Array(
+            Buffer.from(secretKeyIn, 'base64')
+        );
+        console.log("secretKey length:", secretKey.length);
+        console.log(secretKey);
+        console.log("secretKey length:", secretKeyIn.length);
+        console.log(secretKeyIn);
+        const encryptedPackageJson = Buffer.from(encryptedPackageIn, 'base64').toString('utf-8');
+        const parsed = JSON.parse(encryptedPackageJson);
 
-    const encryptedPackage: encryptedPackage = {
-        encryptedSymmetricKey: new Uint8Array(Buffer.from(parsed.encryptedSymmetricKey, "base64")),
-        symmetricEncryptedDataPackage: {
-            cipherText: parsed.symmetricEncryptedDataPackage.cipherText,
-            initializationVector: Buffer.from(parsed.symmetricEncryptedDataPackage.initializationVector, "base64"),
-           authTag: Buffer.from(parsed.symmetricEncryptedDataPackage.authTag, "base64"),
-        }
-    };
+        const encryptedPackage: encryptedPackage = {
+            encryptedSymmetricKey: new Uint8Array(Buffer.from(parsed.encryptedSymmetricKey, "base64")),
+            symmetricEncryptedDataPackage: {
+                cipherText: parsed.symmetricEncryptedDataPackage.cipherText,
+                initializationVector: Buffer.from(parsed.symmetricEncryptedDataPackage.initializationVector, "base64"),
+            authTag: Buffer.from(parsed.symmetricEncryptedDataPackage.authTag, "base64"),
+            }
+        };
 
-    const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
-    setMessageOut(decryptedPackage.message);
-    alert("Decrypted message: " + decryptedPackage.message);
-
+        const decryptedPackage : decryptedPackage = await vgpDecrypt(encryptedPackage, secretKey);
+        setMessageOut(decryptedPackage.message);
+        alert("Decrypted message: " + decryptedPackage.message);
+    }
+    catch (error)
+    {
+      alert(error)  
+    }
 }
 
 function decryption() {
