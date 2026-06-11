@@ -62,7 +62,7 @@ export async function vgpGenerateKeyPair()
 export async function mlKemPlusAesEncrypt(symetricPackage: symmetricPackage, publicKey: Uint8Array) 
 {
   const { cipherText, sharedSymmetricSecret } = await generateSymKeyAndEncryptMlKem(publicKey);
-  const symmetricEncryptedDataPackage = encryptWithSymmetricKeyBase64(symetricPackage.message, sharedSymmetricSecret);
+  const symmetricEncryptedDataPackage = encryptWithSymmetricKeyBase64(JSON.stringify(symetricPackage), sharedSymmetricSecret);
   
   return { cipherText, symmetricEncryptedDataPackage };
 }
