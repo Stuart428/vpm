@@ -29,7 +29,7 @@ async function onSumbit(e: React.FormEvent<HTMLFormElement>, publicKeyIn: string
     console.log(base64); 
 }
 
-function handleFileChange(e: React.ChangeEvent<HTMLInputElement>)
+function handleFileChange(e: React.ChangeEvent<HTMLInputElement>, setFiles: React.Dispatch<React.SetStateAction<filePackage[]>>)
 {
     var files: filePackage[] = [];
     if (e.target.files) {
@@ -56,6 +56,7 @@ function handleFileChange(e: React.ChangeEvent<HTMLInputElement>)
         reader.readAsDataURL(file);
       }
     }
+    setFiles(files);
     return files;
 }
 
@@ -63,7 +64,7 @@ function Encryption() {
   const [publicKeyIn, setPublicKeyIn] = useState<string>('');
   const [messageIn, setMessageIn] = useState<string>('');
   const [encryptedPackageOut, setEncryptedPackageOut] = useState<string>('');
-  var files: filePackage[];
+  const [files, setFiles] = useState<filePackage[]>([]);
 
   return (
     <div id="encryption">
@@ -85,7 +86,7 @@ function Encryption() {
         rows={10}
         cols={100}
         />
-        <input id="file" type="file" onChange={(e)=> {files = handleFileChange(e)}} />
+        <input id="file" type="file" onChange={(e)=> {handleFileChange(e, setFiles)}} />
         
         <input type="submit" ></input>
         
