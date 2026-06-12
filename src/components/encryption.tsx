@@ -106,7 +106,7 @@ function Encryption() {
         
         <h3>The encrypted message: </h3>
         
-        {new TextEncoder().encode(encryptedPackageOut).length > 10240 && (
+        {new TextEncoder().encode(encryptedPackageOut).length > 50240 && (
             <p>{encryptedPackageOut}</p>
         )}
         <button
