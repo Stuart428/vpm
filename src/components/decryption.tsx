@@ -63,8 +63,13 @@ async function downloadFile(decryptedPackage: decryptedPackage) {
             throw new Error("fileThing.data is undefined");
         }
 
-        const response = await fetch(fileThing.data);
-        const blob = await response.blob();
+        // Convert base64 string to Blob
+        const binaryString = atob(fileThing.data);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        const blob = new Blob([bytes]);
 
         const element = document.createElement("a");
         element.href = URL.createObjectURL(blob);
