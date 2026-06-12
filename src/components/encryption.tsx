@@ -106,9 +106,9 @@ function Encryption() {
         
         <h3>The encrypted message: </h3>
         
-        {new TextEncoder().encode(encryptedPackageOut).length > 50240 && (
-            <p>{encryptedPackageOut}</p>
-        )}
+        
+        <p>{encryptedPackageOut}</p>
+        
         <button
 onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}} > Copy</button>
         <button id="downloadButton" onClick={async () => {await downloadEncryptedPackage(encryptedPackageOut)}}> Download</button>
