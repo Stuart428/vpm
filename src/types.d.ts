@@ -23,3 +23,8 @@ type filePackage =
   fileName: string;
   data: string;
 }
+type encryptedChunk = {
+  cipherText: string;
+  initializationVector: Buffer;
+  authTag: Buffer;
+}

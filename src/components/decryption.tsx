@@ -79,6 +79,27 @@ async function downloadFile(decryptedPackage: decryptedPackage) {
         alert(error);
     }
 }
+async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>, setEncryptedPackageIn: React.Dispatch<React.SetStateAction<string>>) {
+    const file = e.target.files?.[0];
+    if (!file) {
+        alert("No file selected");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const fileContent = event.target?.result;
+        if (typeof fileContent === "string") {
+            setEncryptedPackageIn(fileContent);
+        } else {
+            alert("Failed to read file content as string");
+        }
+    };
+    reader.onerror = () => {
+        alert("Error reading file");
+    };
+    reader.readAsText(file);
+}
 function decryption() {
     const [encryptedPackageIn, setEncryptedPackageIn] = useState<string>('');
     const [secretKeyIn, setSecretKeyIn] = useState<string>('');
@@ -98,7 +119,9 @@ function decryption() {
                     placeholder="Enter encrypted package here"
                     rows={10}
                     cols={100}
-                />       
+                />   
+                <p>Or upload the encrypted package:</p>
+                <input type="file" accept=".enc" onChange={async (e) => {await handleFileUpload(e, setEncryptedPackageIn)}} />
                 <textarea
                     value={secretKeyIn}
                     onChange={(event) => setSecretKeyIn(event.target.value)}

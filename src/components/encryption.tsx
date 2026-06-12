@@ -59,6 +59,17 @@ async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>, setFiles
     setFiles(files);
     return files;
 }
+async function downloadEncryptedPackage(encryptedPackageOut: string) {
+    const blob = new Blob([encryptedPackageOut], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'encrypted_package.enc';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 
 function Encryption() {
   const [publicKeyIn, setPublicKeyIn] = useState<string>('');
@@ -98,6 +109,7 @@ function Encryption() {
         
         <button
 onClick={() => {navigator.clipboard.writeText(encryptedPackageOut)}}> Copy</button>
+        <button id="downloadButton" onClick={async () => {await downloadEncryptedPackage(encryptedPackageOut)}}> Download</button>
 
     </div>
 )}
