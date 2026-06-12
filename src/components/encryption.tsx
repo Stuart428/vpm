@@ -65,7 +65,7 @@ async function downloadEncryptedPackage(encryptedPackageOut: string) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'encrypted_package.enc';
+    a.download = 'encrypted_package_' + Date.now() + '.enc';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
