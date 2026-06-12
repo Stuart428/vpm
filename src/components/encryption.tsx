@@ -8,10 +8,10 @@ async function onSumbit(e: React.FormEvent<HTMLFormElement>, publicKeyIn: string
     const publicKey = new Uint8Array(
         Buffer.from(publicKeyIn, 'base64')
     );
-    console.log("publicKey length:", publicKey.length);
-    console.log(publicKey);
-    console.log("publicKey length:", publicKeyIn.length);
-    console.log(publicKeyIn);
+    //console.log("publicKey length:", publicKey.length);
+    //console.log(publicKey);
+    //console.log("publicKey length:", publicKeyIn.length);
+    //console.log(publicKeyIn);
     const message = messageIn;
     const symetricPackage : symmetricPackage = {message: message, filePackage: files };
     //alert(JSON.stringify(symetricPackage));
@@ -26,7 +26,8 @@ async function onSumbit(e: React.FormEvent<HTMLFormElement>, publicKeyIn: string
     };
     const base64 = Buffer.from(JSON.stringify(safePackage)).toString("base64");
     setEncryptedPackageOut(base64);
-    console.log(base64); 
+    alert("Encryption Complete!");
+    //console.log(base64); 
 }
 
 async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>, setFiles: React.Dispatch<React.SetStateAction<filePackage[]>>)

@@ -6,7 +6,7 @@ export async function generateMlKemKeyPair()
 {
   const keypair = await createMlKem1024();
   const [publicKey, secretKey] = keypair.generateKeyPair();
-  console.log(publicKey.length);
+  //console.log(publicKey.length);
   return { publicKey, secretKey };
 }
 
@@ -14,8 +14,8 @@ export async function generateMlKemKeyPair()
 export async function generateSymKeyAndEncryptMlKem(publicKey: Uint8Array)
 {
   const sender = await createMlKem1024();
-  console.log("publicKey length:", publicKey.length);
-  console.log(publicKey);
+  //console.log("publicKey length:", publicKey.length);
+  //console.log(publicKey);
   const [cipherText, sharedSymmetricSecret] = sender.encap(publicKey);
   return { cipherText, sharedSymmetricSecret };
 }

@@ -45,7 +45,7 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
 }
 async function downloadFile(decryptedPackage: decryptedPackage) {
     try {
-        console.log("decryptedPackage", decryptedPackage);
+        //console.log("decryptedPackage", decryptedPackage);
 
         if (!decryptedPackage) {
             throw new Error("decryptedPackage is undefined");
@@ -57,7 +57,7 @@ async function downloadFile(decryptedPackage: decryptedPackage) {
 
         const fileThing = decryptedPackage.filePackage[0];
 
-        console.log("fileThing", fileThing);
+        //console.log("fileThing", fileThing);
 
         if (!fileThing.data) {
             throw new Error("fileThing.data is undefined");

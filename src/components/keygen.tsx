@@ -5,8 +5,8 @@ import { Buffer } from 'buffer';
 async function onClick(setPublicKeyOut: React.Dispatch<React.SetStateAction<string>>, setSecretKeyOut: React.Dispatch<React.SetStateAction<string>>)
 {
     const { publicKey, secretKey } = await vgpGenerateKeyPair();
-    console.log(publicKey.length);
-    console.log(Buffer.from(publicKey).toString('base64').length);
+    //console.log(publicKey.length);
+    //console.log(Buffer.from(publicKey).toString('base64').length);
     setPublicKeyOut(Buffer.from(publicKey).toString('base64'));
     setSecretKeyOut(Buffer.from(secretKey).toString('base64'));
 }
