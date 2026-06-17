@@ -80,40 +80,14 @@ textarea
     border-radius: 8px;
     color: var(--color1);
 }
-#keygenTab 
-{
-  height: 45px;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  border: 1px solid var(--color1);
-  background-color: var(--color2);  
-  border-radius: 8px;
-  color: var(--color1);
-  /*justify-content: center;*/
-  align-content: center;
-  line-height: 22.5px;
-}
+
 #keygenTab button 
 {
   height: 30px;
   width: 150px;
 }
 
-#encryptionTab 
-{
-  height: 45px;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  border: 1px solid var(--color1);
-  background-color: var(--color2);  
-  border-radius: 8px;
-  color: var(--color1);
-  /*justify-content: center;*/
-  align-content: center;
-  line-height: 22.5px;
-}
+
 
 #encryptionTab button 
 {
@@ -121,23 +95,23 @@ textarea
   width: 150px;
 }
 
-#decryptionTab 
-{
-  height: 45px;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  border: 1px solid var(--color1);
-  background-color: var(--color2);  
-  border-radius: 8px;
-  color: var(--color1);
-  /*justify-content: center;*/
-  align-content: center;
-  line-height: 22.5px;
-}
+
 
 #decryptionTab button 
 {
   height: 30px;
   width: 150px;
+}
+#keygenTab,
+#encryptionTab,
+#decryptionTab {
+  height: 45px;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center; /* <-- vertical centering */
+  border: 1px solid var(--color1);
+  background-color: var(--color2);
+  border-radius: 8px;
+  color: var(--color1);
 }
