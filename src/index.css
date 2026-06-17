@@ -90,6 +90,7 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
+  justify-content: center;
   align-content: center;
 }
 
@@ -103,6 +104,7 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
+  justify-content: center;
   align-content: center;
 }
 #decryptionTab 
@@ -115,5 +117,6 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
+  justify-content: center;
   align-content: center;
 }
