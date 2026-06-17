@@ -9,6 +9,8 @@
   --pacific-cyan: #1b9aaaff;
   --bubblegum-pink: #ef476fff;
   --amber-gold: #ffc43dff;
+  --color1: #181818;
+  --color2: white;
   font-family: Arial, sans-serif;
   /* Disable iOS text auto-scaling */
   -webkit-text-size-adjust: 100%;
@@ -45,10 +47,10 @@ input
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid #181818;
-    background-color: white;  
+    border: 1px solid var(--color1);
+    background-color: var(--color2);  
     border-radius: 8px;
-    color: #181818;
+    color: var(--color1);
 }
 button
 {
@@ -56,15 +58,15 @@ button
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid #181818;
-    background-color: white;  
+    border: 1px solid var(--color1);
+    background-color: var(--color2);  
     border-radius: 8px;
-    color: #181818;
+    color: var(--color1);
 }
 button:hover
 {
-  color: white;
-  background-color: #181818;
+  color: var(--color2);
+  background-color: var(--color1);
 }
 
 textarea
@@ -73,8 +75,8 @@ textarea
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid #181818;
-    background-color: white;  
+    border: 1px solid var(--color1);
+    background-color: var(--color2);  
     border-radius: 8px;
-    color: #181818;
+    color: var(--color1);
 }

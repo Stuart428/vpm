@@ -1,11 +1,11 @@
 #decryption {
     border-style: solid;
     border-radius: 5px;
-    border-color: white;
+    border-color: var(--color1);
     padding: 5px;
     margin: 20px;
-    color: white;
-    background-color: #181818;
+    color: var(--color1);
+    background-color: var(--color2);
     justify-content: center;
     display: flex;
 }
