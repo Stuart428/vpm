@@ -82,7 +82,7 @@ textarea
 }
 #keygenTab 
 {
-  height: 20;
+  height: 20px;
   margin: 5px;
   padding: 5px;
   display: flex;
@@ -94,7 +94,7 @@ textarea
 }
 #encryptionTab 
 {
-  height: 20;
+  height: 20px;
   margin: 5px;
   padding: 5px;
   display: flex;
@@ -106,7 +106,7 @@ textarea
 }
 #decryptionTab 
 {
-  height: 20;
+  height: 20px;
   margin: 5px;
   padding: 5px;
   display: flex;
