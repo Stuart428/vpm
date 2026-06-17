@@ -92,7 +92,7 @@ textarea
   color: var(--color1);
   justify-content: center;
   align-content: center;
-  line-height: 45px;
+  line-height: 22.5px;
 }
 
 #encryptionTab 
@@ -107,7 +107,7 @@ textarea
   color: var(--color1);
   justify-content: center;
   align-content: center;
-  line-height: 45px;
+  line-height: 22.5px;
 }
 #decryptionTab 
 {
@@ -121,5 +121,5 @@ textarea
   color: var(--color1);
   justify-content: center;
   align-content: center;
-  line-height: 45px;
+  line-height: 22.5px;
 }
