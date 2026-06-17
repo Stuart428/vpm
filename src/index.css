@@ -90,8 +90,8 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  /*justify-content: center;
-  align-content: center;*/
+  /*justify-content: center;*/
+  align-content: center;
   line-height: 22.5px;
 }
 #keygenTab button 
@@ -110,8 +110,8 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  /*justify-content: center;
-  align-content: center;*/
+  /*justify-content: center;*/
+  align-content: center;
   line-height: 22.5px;
 }
 
@@ -131,8 +131,8 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  /*justify-content: center;
-  align-content: center;*/
+  /*justify-content: center;*/
+  align-content: center;
   line-height: 22.5px;
 }
 
