@@ -82,7 +82,7 @@ textarea
 }
 #keygenTab 
 {
-  height: 50;
+  height: 20;
   margin: 5px;
   padding: 5px;
   display: flex;
@@ -90,11 +90,11 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  justify-content: center;
+  align-content: center;
 }
 #encryptionTab 
 {
-  height: 50;
+  height: 20;
   margin: 5px;
   padding: 5px;
   display: flex;
@@ -102,11 +102,11 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  justify-content: center;
+  align-content: center;
 }
 #decryptionTab 
 {
-  height: 50;
+  height: 20;
   margin: 5px;
   padding: 5px;
   display: flex;
@@ -114,5 +114,5 @@ textarea
   background-color: var(--color2);  
   border-radius: 8px;
   color: var(--color1);
-  justify-content: center;
+  align-content: center;
 }
