@@ -21,6 +21,7 @@
 
   /* Optional color scheme */
   color-scheme: light;
+  background: linear-gradient(45deg,rgba(20, 20, 20, 1) 0%, var(--emerald) 100%);
 }
 
 *,
