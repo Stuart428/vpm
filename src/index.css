@@ -80,3 +80,36 @@ textarea
     border-radius: 8px;
     color: var(--color1);
 }
+#keygenTab 
+{
+  height: 50;
+  margin: 5px;
+  padding: 5px;
+  display: block;
+  border: 1px solid var(--color1);
+  background-color: var(--color2);  
+  border-radius: 8px;
+  color: var(--color1);
+}
+#encryptionTab 
+{
+  height: 50;
+  margin: 5px;
+  padding: 5px;
+  display: block;
+  border: 1px solid var(--color1);
+  background-color: var(--color2);  
+  border-radius: 8px;
+  color: var(--color1);
+}
+#decryptionTab 
+{
+  height: 50;
+  margin: 5px;
+  padding: 5px;
+  display: block;
+  border: 1px solid var(--color1);
+  background-color: var(--color2);  
+  border-radius: 8px;
+  color: var(--color1);
+}
