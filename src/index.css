@@ -21,7 +21,7 @@
 
   /* Optional color scheme */
   color-scheme: light;
-  background: linear-gradient(45deg,rgba(20, 20, 20, 1) 0%, var(--emerald) 100%);
+  background-color: var(--emerald);
 }
 
 *,
@@ -45,10 +45,10 @@ input
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid white;
-    background-color: #181818;  
+    border: 1px solid #181818;
+    background-color: white;  
     border-radius: 8px;
-    color: white;
+    color: #181818;
 }
 button
 {
@@ -56,15 +56,15 @@ button
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid white;
-    background-color: #181818;  
+    border: 1px solid #181818;
+    background-color: white;  
     border-radius: 8px;
-    color: white;
+    color: #181818;
 }
 button:hover
 {
-  color: #181818;
-  background-color: white;
+  color: white;
+  background-color: #181818;
 }
 
 textarea
@@ -73,8 +73,8 @@ textarea
     margin: 5px;
     padding: 5px;
     display: block;
-    border: 1px solid white;
-    background-color: #181818;  
+    border: 1px solid #181818;
+    background-color: white;  
     border-radius: 8px;
-    color: white;
+    color: #181818;
 }
