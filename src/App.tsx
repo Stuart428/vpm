@@ -14,17 +14,17 @@ function App() {
 
   return (
     <>
-      <div> 
+      <div id="keygenTab"> 
         <h2>Keygen</h2>
         <button onClick={() => {if (showKeygen == true){setShowKeygen(false);} else {setShowKeygen(true);}}}>Toggle visibility</button>
       </div>
       {showKeygen && <KeyGen />}
-      <div> 
+      <div id="encryptionTab"> 
         <h2>Encryption</h2>
         <button onClick={() => {if (showEncryption == true){setShowEncryption(false);} else {setShowEncryption(true);}}}>Toggle visibility</button>
       </div>
       {showEncryption && <Encryption />}
-      <div> 
+      <div id="decryptionTab"> 
         <h2>Decryption</h2>
         <button onClick={() => {if (showDecryption == true){setShowDecryption(false);} else {setShowDecryption(true);}}}>Toggle visibility</button>
       </div>
