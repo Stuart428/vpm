@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <div> 
-        <h2><Keygen></Keygen></h2>
+        <h2>Keygen</h2>
         <button onClick={() => {if (showKeygen == true){setShowKeygen(false);} else {setShowKeygen(true);}}}>Toggle visibility</button>
       </div>
       {showKeygen && <KeyGen />}
