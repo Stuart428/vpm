@@ -1,4 +1,14 @@
+
+
+
+
 :root {
+  /* CSS HEX */
+  --light-yellow: #f8ffe5ff;
+  --emerald: #06d6a0ff;
+  --pacific-cyan: #1b9aaaff;
+  --bubblegum-pink: #ef476fff;
+  --amber-gold: #ffc43dff;
   font-family: Arial, sans-serif;
   /* Disable iOS text auto-scaling */
   -webkit-text-size-adjust: 100%;
