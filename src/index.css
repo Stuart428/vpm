@@ -94,6 +94,11 @@ textarea
   align-content: center;*/
   line-height: 22.5px;
 }
+#keygenTab button 
+{
+  height: 30px;
+  width: 80px;
+}
 
 #encryptionTab 
 {
@@ -109,6 +114,13 @@ textarea
   align-content: center;*/
   line-height: 22.5px;
 }
+
+#encryptionTab button 
+{
+  height: 30px;
+  width: 80px;
+}
+
 #decryptionTab 
 {
   height: 45px;
@@ -122,4 +134,10 @@ textarea
   /*justify-content: center;
   align-content: center;*/
   line-height: 22.5px;
+}
+
+#decryptionTab button 
+{
+  height: 30px;
+  width: 80px;
 }
