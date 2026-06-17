@@ -81,22 +81,12 @@ textarea
     color: var(--color1);
 }
 
-#keygenTab button 
-{
-  height: 30px;
-  width: 150px;
-}
 
 
 
-#encryptionTab button 
-{
-  height: 30px;
-  width: 150px;
-}
 
-
-
+#keygenTab,
+#encryptionTab,
 #decryptionTab button 
 {
   height: 30px;
