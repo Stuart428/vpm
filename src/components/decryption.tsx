@@ -118,7 +118,7 @@ function decryption() {
     const [messageOut, setMessageOut] = useState<string>('');
     const [decryptedPackage, setDecryptedPackage] =
     useState<decryptedPackage | null>(null);
-    const [showDownload, setShowDownload] = useState(true);
+    const [showDownload, setShowDownload] = useState(false);
 
     return (
         <div id="decryption">
