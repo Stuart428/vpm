@@ -15,6 +15,7 @@ function keygen()
 {
     const [publicKeyOut, setPublicKeyOut] = useState<string>('');
     const [secretKeyOut, setSecretKeyOut] = useState<string>('');
+    
     return (
         <div id="keyGen">
             <h2>Key Pair Generation (Remember to write both of these down! You should probably not spend the time manually writing this on a piece of paper and store it in a text file)</h2>

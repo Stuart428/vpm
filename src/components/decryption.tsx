@@ -4,7 +4,7 @@ import React, { useState} from 'react';
 import { Buffer } from 'buffer';
 import { vgpDecrypt } from '../cryptoFunctions';
 //todo: make ze file download
-async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>, setDecryptedPackage: React.Dispatch<React.SetStateAction<decryptedPackage | null>>): Promise<decryptedPackage>
+async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn: string, secretKeyIn: string, setMessageOut: React.Dispatch<React.SetStateAction<string>>, setDecryptedPackage: React.Dispatch<React.SetStateAction<decryptedPackage | null>>, setShowDownload: React.Dispatch<React.SetStateAction<boolean>>): Promise<decryptedPackage>
 {
     try 
     {
@@ -34,6 +34,13 @@ async function onSubmit(e: React.FormEvent<HTMLFormElement>, encryptedPackageIn:
         //setMessageOut(JSON.stringify(decryptedPackage));
         alert("Decrypted message: " + decryptedPackage.message);
         setDecryptedPackage(decryptedPackage);
+        if(decryptedPackage.filePackage[0]) 
+        {
+            setShowDownload(true);
+        } else 
+        {
+            setShowDownload(false);
+        }
         return decryptedPackage;
     }
     catch (error)
@@ -111,13 +118,14 @@ function decryption() {
     const [messageOut, setMessageOut] = useState<string>('');
     const [decryptedPackage, setDecryptedPackage] =
     useState<decryptedPackage | null>(null);
+    const [showDownload, setShowDownload] = useState(true);
 
     return (
         <div id="decryption">
             <h2>Decryption</h2>
             <p>To decrypt a message, you will need the encrypted package (the output from the encryption section) and the secret key corresponding to the public key used for encryption.</p>
             <p>Enter the encrypted package (in base64 format) and your secret key (in base64 format) below:</p>
-            <form onSubmit={async (e) => {await onSubmit(e, encryptedPackageIn, secretKeyIn, setMessageOut, setDecryptedPackage);}}>
+            <form onSubmit={async (e) => {await onSubmit(e, encryptedPackageIn, secretKeyIn, setMessageOut, setDecryptedPackage, setShowDownload);}}>
                 <textarea
                     value={encryptedPackageIn}
                     onChange={(event) => setEncryptedPackageIn(event.target.value)}
@@ -139,7 +147,7 @@ function decryption() {
         <h3>Decrypted message:</h3>
         <p>{messageOut}</p>
         <button onClick={() => {navigator.clipboard.writeText(messageOut)}}> Copy</button>
-        <button disabled={!decryptedPackage} id="downloadButton" value="download" onClick={async () => {if (decryptedPackage){ await downloadFile(decryptedPackage)}}}>Download File</button>
+        {showDownload && <button disabled={!decryptedPackage} id="downloadButton" value="download" onClick={async () => {if (decryptedPackage){ await downloadFile(decryptedPackage)}}}>Download File</button>}
     </div>
      
     )
