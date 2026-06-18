@@ -98,6 +98,7 @@ function Encryption() {
         rows={10}
         cols={100}
         />
+        <p>Upload files</p>
         <input id="file" type="file" onChange={async (e)=> {await handleFileChange(e, setFiles)}} />
         
         <input type="submit" ></input>
