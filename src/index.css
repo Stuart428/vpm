@@ -98,6 +98,7 @@ textarea
 {
   height: 37px;
   width: 37px;
+  margin-left: auto
 }
 
 #encryptionTab 
@@ -119,6 +120,7 @@ textarea
 {
   height: 37px;
   width: 37px;
+  margin-left: auto
 }
 
 #decryptionTab 
@@ -140,4 +142,5 @@ textarea
 {
   height: 37px;
   width: 37px;
+  margin-left: auto
 }
