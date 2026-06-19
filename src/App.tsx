@@ -15,6 +15,10 @@ function App() {
 
   return (
     <>
+      <div id="titleBar">
+        <img src="public/logo.svg" alt="Logo" />
+        <h1>VPM - A simple web-based PGP like application</h1>
+      </div>
       <div id="keygenTab"> 
         <h2>Keygen</h2>
         <button onClick={() => {if (showKeygen == true){setShowKeygen(false);} else {setShowKeygen(true);}}}>
