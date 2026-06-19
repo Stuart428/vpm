@@ -96,8 +96,8 @@ textarea
 }
 #keygenTab button 
 {
-  height: 30px;
-  width: 150px;
+  height: 37px;
+  width: 37px;
 }
 
 #encryptionTab 
@@ -117,8 +117,8 @@ textarea
 
 #encryptionTab button 
 {
-  height: 30px;
-  width: 150px;
+  height: 37px;
+  width: 37px;
 }
 
 #decryptionTab 
@@ -138,6 +138,6 @@ textarea
 
 #decryptionTab button 
 {
-  height: 30px;
-  width: 150px;
+  height: 37px;
+  width: 37px;
 }

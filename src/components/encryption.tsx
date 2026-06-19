@@ -77,6 +77,7 @@ function Encryption() {
   const [messageIn, setMessageIn] = useState<string>('');
   const [encryptedPackageOut, setEncryptedPackageOut] = useState<string>('');
   const [files, setFiles] = useState<filePackage[]>([]);
+  
 
   return (
     <div id="encryption">

@@ -3,6 +3,7 @@ import './App.css'
 import Encryption from './components/encryption';
 import KeyGen from './components/keygen';
 import Decryption from './components/decryption';
+import MaterialIcon from './MaterialIcon';
 import { useState } from 'react';
 function App() {
   const [showKeygen, setShowKeygen] = useState(true)
@@ -16,17 +17,23 @@ function App() {
     <>
       <div id="keygenTab"> 
         <h2>Keygen</h2>
-        <button onClick={() => {if (showKeygen == true){setShowKeygen(false);} else {setShowKeygen(true);}}}>Toggle visibility</button>
+        <button onClick={() => {if (showKeygen == true){setShowKeygen(false);} else {setShowKeygen(true);}}}>
+          <MaterialIcon name={showKeygen ? "arrow_upward" : "arrow_downward"} />
+        </button>
       </div>
       {showKeygen && <KeyGen />}
       <div id="encryptionTab"> 
         <h2>Encryption</h2>
-        <button onClick={() => {if (showEncryption == true){setShowEncryption(false);} else {setShowEncryption(true);}}}>Toggle visibility</button>
+        <button onClick={() => {if (showEncryption == true){setShowEncryption(false);} else {setShowEncryption(true);}}}>
+          <MaterialIcon name={showEncryption ? "arrow_upward" : "arrow_downward"} />
+        </button>
       </div>
       {showEncryption && <Encryption />}
       <div id="decryptionTab"> 
         <h2>Decryption</h2>
-        <button onClick={() => {if (showDecryption == true){setShowDecryption(false);} else {setShowDecryption(true);}}}>Toggle visibility</button>
+        <button onClick={() => {if (showDecryption == true){setShowDecryption(false);} else {setShowDecryption(true);}}}>
+          <MaterialIcon name={showDecryption ? "arrow_upward" : "arrow_downward"} />
+        </button>
       </div>
       {showDecryption && <Decryption />}
     </>
