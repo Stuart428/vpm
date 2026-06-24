@@ -5,6 +5,7 @@ import KeyGen from './components/keygen';
 import Decryption from './components/decryption';
 import MaterialIcon from './MaterialIcon';
 import { useState } from 'react';
+import logo from './public/logo.svg'
 function App() {
   const [showKeygen, setShowKeygen] = useState(true)
   const [showEncryption, setShowEncryption] = useState(true)
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <div id="titleBar">
-        <img src="/public/logo.svg" alt="Logo" />
+        <img src={logo} alt="Logo" />
         <h1>VPM - A simple web-based PGP like application</h1>
       </div>
       <div id="keygenTab"> 
